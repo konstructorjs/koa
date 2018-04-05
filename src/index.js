@@ -12,6 +12,11 @@ module.exports = class koa {
 
     app.env = app.koa.env;
 
+    app.use(async (ctx, next) => {
+      ctx.state = {};
+      await next();
+    });
+
     app.listen = async (...args) => new Promise((resolve) => {
       const show = (args.length === 0);
       if (args.length === 0) {
